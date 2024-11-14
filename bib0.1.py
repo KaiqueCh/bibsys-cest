@@ -167,11 +167,7 @@ def menuInicial():
             cadastraAluno(id,nome,dataNascimento)
 
 
-
-
         else:
             print("Digite uma opção valida")
-
-
 
 menuInicial()
