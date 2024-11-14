@@ -86,6 +86,7 @@ def livrosDisp():
         if livro["disponivel"] == True:
          print(f"o Documento em Questão {livro["id"]} {livro["titulo"]} disponivel desde {livro["dataAtualizacao"]} ")
 
+##Definindo função de emprestimo de livros
 def emprestimoLivro(livroId,alunoId):
     for livro in dicionarioBiblioteca["livros"]:
      if livro["id"] == livroId and livro["disponivel"]==True:
@@ -109,10 +110,6 @@ def buscaLivroid(id):
 ##Definindo Função de busca aluno
 def buscaAlunos(nome):
     return [aluno for aluno in dicionarioBiblioteca["alunos"]]
-
-
-##Definindo função de emprestimo de livros
-##def emprestimoLivros():
 
 
 ## INICIO DO MENU DEFININDO A FUNÇÃO 
