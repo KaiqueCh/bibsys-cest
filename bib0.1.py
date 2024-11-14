@@ -10,10 +10,9 @@ Demanda : Avaliação Qualitativa Algoritmos e Linguagens de Programação
 
 """
 ## Importando Biblioteca
-import datetime as data
-import time
-from time import sleep
 ## definindo a biblioteca com nomenclatura abreviada
+import datetime as data
+from time import sleep
 
 ## Criando Dicionarios de Dados com Listas por Cadastro
 dicionarioBiblioteca = {
