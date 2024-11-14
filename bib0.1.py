@@ -11,6 +11,8 @@ Demanda : Avaliação Qualitativa Algoritmos e Linguagens de Programação
 """
 ## Importando Biblioteca
 import datetime as data
+import time
+from time import sleep
 ## definindo a biblioteca com nomenclatura abreviada
 
 ## Criando Dicionarios de Dados com Listas por Cadastro
@@ -33,7 +35,7 @@ def cadastraLivro(id,titulo,autor,dataCadastro = None,dataAtualizacao = None,dis
         data.datetime.now().strftime("%d/%m/%y") ##FUNÇÃO PARA COLOCAR AUTOMATICO A DATA DO CADASTRO E DEFINIR A DATA COMO STRING
     
     elif dataAtualizacao is None:
-        data.datetime.now().strftime("%d/%m/%y") ##FUÇÃO PARA COLOCAR AUTOMATICO A DATA DA ALTERAÇÃO E DEFINIR A DATA COMO STRING
+        data.datetime.now().strftime("%d/%m/%y") ##FUNÇÃO PARA COLOCAR AUTOMATICO A DATA DA ALTERAÇÃO E DEFINIR A DATA COMO STRING
  ##abrindo dicionario para adicionar dentro da lista
     addlivro = {
         "id": id,
@@ -41,7 +43,7 @@ def cadastraLivro(id,titulo,autor,dataCadastro = None,dataAtualizacao = None,dis
         "autor": autor,
         "dataCadastro": dataCadastro,
         "dataAtualizacao": dataAtualizacao,
-        "disponivel": disponivel
+        "disponivel": True
     }
     ##adicionando na lista o dicionario com append
     dicionarioBiblioteca["livros"].append(addlivro)
@@ -81,11 +83,24 @@ def buscaLivrotit(titulo):
 ##Definindo Função de disponibilidade de livros
 def livrosDisp():
     for livro in dicionarioBiblioteca["livros"]:
-         if livro["disponivel"][1] == "disponivel:":
-            print(f"o Documento em Questão {livro["id"]} {livro["titulo"]} disponivel desde {livro["disponivel"][2]} ")
-            ## [1] = Disponivel
-            ## [2] = indisponivel
+        print(f"dados do livro {livro["disponivel"]} ")
+        if livro["disponivel"] == True:
+         print(f"o Documento em Questão {livro["id"]} {livro["titulo"]} disponivel desde {livro["dataAtualizacao"]} ")
 
+def emprestimoLivro(livroId,alunoId):
+    for livro in dicionarioBiblioteca["livros"]:
+     if livro["id"] == livroId and livro["disponivel"]==True:
+         #verificar se o aluno existe
+        if dicionarioBiblioteca["alunos"] == alunoId:
+           print(dicionarioBiblioteca["alunos"])
+        else:
+            print(f""" HELP!! ALUNO NÃO CADASTRADO""")
+            cadastraAluno()
+
+        #senao aluno não cadastrado
+     else:
+         print("camila gay0")
+         #livro indisponivel
 
 ##Definindo função de busca livro por id
 def buscaLivroid(id):
@@ -113,6 +128,7 @@ def menuInicial():
                   [5] - Cadastrar Autor
                   [6] - Cadastrar Aluno
                   [7] - Emprestimo de Livro
+                  [0] - Sair
                """)
         
         ##INPUT PARA GUARDAR A OPÇÃO SELECIONADA PELO USUARIO
@@ -123,7 +139,7 @@ def menuInicial():
 ## chamando as funções para suas respectivas opções do menus
         if escolha == 1:
             mostraLinha()
-            print(f"O {dicionarioBiblioteca["livros"]}")
+            print(f"Os livros disponiveis são {livrosDisp()} ")
             mostraLinha()
         
         elif escolha == 2:
@@ -145,8 +161,9 @@ def menuInicial():
             autor = str(input("Autor: "))
             dataCadastro = data.datetime.now().strftime("%d/%m/%y")
             dataAtualizacao = data.datetime.now().strftime("%d/%m/%y")
-            disponivel = True
+            disponivel = None
             cadastraLivro(id,titulo,autor,dataCadastro,dataAtualizacao,disponivel)
+            print("Cadastrado com Sucesso")
             mostraLinha()
         
         elif escolha == 5:
@@ -156,6 +173,7 @@ def menuInicial():
             nome = str(input("NOME : "))
             dataNascimento = str(input("DATA DE NASCIMENTO : "))
             cadastraAutor(id,nome,dataNascimento)
+            print("Cadastrado com Sucesso")
             mostraLinha()
 
         elif escolha == 6:
@@ -165,9 +183,28 @@ def menuInicial():
             nome = str(input("Nome do Aluno: "))
             dataNascimento = str(input("Data de Nascimento: "))
             cadastraAluno(id,nome,dataNascimento)
+            print("Cadastrado com Sucesso")
 
+        elif escolha == 7:
+            mostraLinha()
+            print(f"LIVROS DISPONIVEIS {livrosDisp()}")
+            livrosDisp(titulo)
+            livroId = int(input("Digite o ID do livro: "))
+            alunoId = int(input("Digite o ID do aluno: "))
+            emprestimoLivro(livroId, alunoId)
+            print("")
+
+
+        elif escolha == 0:
+            print("Sistema está se encerrando...⏳")
+            for i in range(5, -1, -1):
+                print(i, end= "\r")
+
+                time.sleep(0.6)
+            print("Sistema se encerrou!✅")
+            break
 
         else:
-            print("Digite uma opção valida")
+            print("opção invalida")
 
 menuInicial()
