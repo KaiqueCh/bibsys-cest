@@ -12,7 +12,7 @@ Demanda : Avaliação Qualitativa Algoritmos e Linguagens de Programação
 ## Importando Biblioteca
 ## definindo a biblioteca com nomenclatura abreviada
 import datetime as data
-from time import sleep
+import time as tempo
 
 ## Criando Dicionarios de Dados com Listas por Cadastro
 dicionarioBiblioteca = {
@@ -199,7 +199,7 @@ def menuInicial():
             for i in range(5, -1, -1):
                 print(i, end= "\r")
 
-                time.sleep(0.6)
+                tempo.time.sleep(0.6)
             print("Sistema se encerrou!✅")
             break
 
