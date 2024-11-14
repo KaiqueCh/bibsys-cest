@@ -93,6 +93,14 @@ def emprestimoLivro(livroId,alunoId):
          #verificar se o aluno existe
         if dicionarioBiblioteca["alunos"] == alunoId:
            print(dicionarioBiblioteca["alunos"])
+           if "emprestimos" not in dicionarioBiblioteca:
+               livro["disponivel"] = False
+               dicionarioBiblioteca["emprestimos"] = {
+                   
+               }
+               dicionarioBiblioteca["emprestimos"]["alunoId"] = livroId
+               print(f"Emprestimo do livro{livroId},\n Realizado com sucesso para o Aluno {alunoId}  ")
+
         else:
             print(f""" HELP!! ALUNO NÃO CADASTRADO""")
             cadastraAluno()
@@ -101,6 +109,7 @@ def emprestimoLivro(livroId,alunoId):
      else:
          print("")
          #livro indisponivel
+
 
 ##Definindo função de busca livro por id
 def buscaLivroid(id):
@@ -135,7 +144,7 @@ def menuInicial():
 ## chamando as funções para suas respectivas opções do menus
         if escolha == 1:
             mostraLinha()
-            print(f"Os livros disponiveis são {livrosDisp()} ")
+            livrosDisp()
             mostraLinha()
         
         elif escolha == 2:
@@ -183,8 +192,7 @@ def menuInicial():
 
         elif escolha == 7:
             mostraLinha()
-            print(f"LIVROS DISPONIVEIS {livrosDisp()}")
-            livrosDisp(titulo)
+            livrosDisp()
             livroId = int(input("Digite o ID do livro: "))
             alunoId = int(input("Digite o ID do aluno: "))
             emprestimoLivro(livroId, alunoId)
