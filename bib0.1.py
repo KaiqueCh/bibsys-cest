@@ -99,7 +99,7 @@ def emprestimoLivro(livroId,alunoId):
 
         #senao aluno não cadastrado
      else:
-         print("camila gay0")
+         print("")
          #livro indisponivel
 
 ##Definindo função de busca livro por id
