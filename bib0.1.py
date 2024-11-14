@@ -80,11 +80,12 @@ def buscaLivrotit(titulo):
     
 
 ##Definindo Função de disponibilidade de livros
-def livrosDisp(dicionarioBiblioteca):
+def livrosDisp():
     for livro in dicionarioBiblioteca["livros"]:
         print(f"dados do livro {livro["disponivel"]} ")
         if livro["disponivel"] == True:
-         print(f"o Documento em Questão {livro["id"]} {livro["titulo"]} disponivel desde {livro["dataAtualizacao"]} ")
+             print(f"o Documento em Questão {livro["id"]} {livro["titulo"]} disponivel desde {livro["dataAtualizacao"]} ")
+
 
 ##Definindo função de emprestimo de livros
 def emprestimoLivro(livroId,alunoId):
@@ -139,7 +140,7 @@ def menuInicial():
 ## chamando as funções para suas respectivas opções do menus
         if escolha == 1:
             mostraLinha()
-            livrosDisp()
+            print(f"O {dicionarioBiblioteca["livros"]}")
             mostraLinha()
         
         elif escolha == 2:
