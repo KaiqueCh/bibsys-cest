@@ -80,7 +80,7 @@ def buscaLivrotit(titulo):
     
 
 ##Definindo Função de disponibilidade de livros
-def livrosDisp():
+def livrosDisp(dicionarioBiblioteca):
     for livro in dicionarioBiblioteca["livros"]:
         print(f"dados do livro {livro["disponivel"]} ")
         if livro["disponivel"] == True:
@@ -93,14 +93,12 @@ def emprestimoLivro(livroId,alunoId):
          #verificar se o aluno existe
         if dicionarioBiblioteca["alunos"] == alunoId:
            print(dicionarioBiblioteca["alunos"])
-           if "emprestimos" not in dicionarioBiblioteca:
+           validaAlunos = any(aluno["id"] == alunoId for aluno in dicionarioBiblioteca)
+           if validaAlunos: 
+               dicionarioBiblioteca["emprestimos"].append({"livroId": livroId, "alunoId": alunoId})
                livro["disponivel"] = False
-               dicionarioBiblioteca["emprestimos"] = {
-                   
-               }
-               dicionarioBiblioteca["emprestimos"]["alunoId"] = livroId
-               print(f"Emprestimo do livro{livroId},\n Realizado com sucesso para o Aluno {alunoId}  ")
-
+               
+               
         else:
             print(f""" HELP!! ALUNO NÃO CADASTRADO""")
             cadastraAluno()
@@ -192,7 +190,7 @@ def menuInicial():
 
         elif escolha == 7:
             mostraLinha()
-            livrosDisp()
+            livrosDisp("livros Disponiveis")
             livroId = int(input("Digite o ID do livro: "))
             alunoId = int(input("Digite o ID do aluno: "))
             emprestimoLivro(livroId, alunoId)
