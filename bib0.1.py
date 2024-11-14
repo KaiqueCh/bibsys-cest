@@ -93,12 +93,7 @@ def emprestimoLivro(livroId,alunoId):
          #verificar se o aluno existe
         if dicionarioBiblioteca["alunos"] == alunoId:
            print(dicionarioBiblioteca["alunos"])
-           validaAlunos = any(aluno["id"] == alunoId for aluno in dicionarioBiblioteca)
-           if validaAlunos: 
-               dicionarioBiblioteca["emprestimos"].append({"livroId": livroId, "alunoId": alunoId})
-               livro["disponivel"] = False
-               
-               
+           
         else:
             print(f""" HELP!! ALUNO NÃO CADASTRADO""")
             cadastraAluno()
