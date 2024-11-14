@@ -86,12 +86,6 @@ def livrosDisp():
             ## [1] = Disponivel
             ## [2] = indisponivel
 
-##def emprestimoLivro(livroId,alunoId):
-    ##for livros in dicionarioBiblioteca["livros"]:
-     ##   if livros["id"] == 
-       ##     livros["disponivel"] = ("indisponivel")
-
-
 
 ##Definindo função de busca livro por id
 def buscaLivroid(id):
