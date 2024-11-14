@@ -160,7 +160,7 @@ def menuInicial():
             autor = str(input("Autor: "))
             dataCadastro = data.datetime.now().strftime("%d/%m/%y")
             dataAtualizacao = data.datetime.now().strftime("%d/%m/%y")
-            disponivel = None
+            disponivel = True
             cadastraLivro(id,titulo,autor,dataCadastro,dataAtualizacao,disponivel)
             print("Cadastrado com Sucesso")
             mostraLinha()
