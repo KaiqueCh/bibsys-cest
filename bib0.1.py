@@ -16,7 +16,6 @@ from time import sleep
 ## definindo a biblioteca com nomenclatura abreviada
 
 ## Criando Dicionarios de Dados com Listas por Cadastro
-# Rodolfo esteve aqui
 dicionarioBiblioteca = {
     "autores": [] ,
     "livros": [] ,
