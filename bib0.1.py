@@ -93,14 +93,16 @@ def emprestimoLivro(livroId,alunoId):
          #verificar se o aluno existe
         if dicionarioBiblioteca["alunos"] == alunoId:
            print(dicionarioBiblioteca["alunos"])
-           
+           dicionarioBiblioteca["emprestimos"].append({"livroid": livroId, "alunoid": alunoId})
+           print(f" Emprestimo do livro ID{livroId} Realizado com Sucesso.")
+
         else:
             print(f""" HELP!! ALUNO NÃO CADASTRADO""")
             cadastraAluno()
 
         #senao aluno não cadastrado
      else:
-         print("")
+         print("Livro não encontrado ou Indisponivel no momento...")
          #livro indisponivel
 
 
@@ -189,7 +191,7 @@ def menuInicial():
             livroId = int(input("Digite o ID do livro: "))
             alunoId = int(input("Digite o ID do aluno: "))
             emprestimoLivro(livroId, alunoId)
-            print("")
+            mostraLinha()
 
 
         elif escolha == 0:
