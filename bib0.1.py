@@ -82,20 +82,15 @@ def emprestimoLivro(livroId,alunoId):
     for livro in dicionarioBiblioteca["livros"]:
      if livro["id"] == livroId and livro["disponivel"]==True:
          #verificar se o aluno existe
-        validaAluno = any(aluno["id"] == alunoId for aluno in dicionarioBiblioteca["alunos"])
-        if validaAluno:
+        if dicionarioBiblioteca["alunos"] == alunoId:
            print(dicionarioBiblioteca["alunos"])
-           dicionarioBiblioteca["emprestimos"].append({"livroid": livroId, "alunoid": alunoId})
-           print(f" Emprestimo do livro ID{livroId} Realizado com Sucesso.")
-
         else:
-            print(f"""NÃO CADASTRADO\n Cadastre o Aluno a seguir""")
-            cadastraAluno(alunoId, nome, dataNascimento) # type: ignore
+            print(f""" HELP!! ALUNO NÃO CADASTRADO""")
+            cadastraAluno()
 
         #senao aluno não cadastrado
      else:
-         print("Livro não encontrado ou Indisponivel no momento...")
-         #livro indisponivel
+         print("")
 
 
 ##Definindo função de busca livro por id
