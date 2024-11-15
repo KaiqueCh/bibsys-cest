@@ -17,9 +17,9 @@ def mostraLinha():
 ## Definindo Função para Cadastro de Livro na lista 
 def cadastraLivro(id, titulo, autor, dataCadastro=None, dataAtualizacao=None, disponivel=True):
     if dataCadastro is None:
-        dataCadastro = data.datetime.now().strftime("%d/%m/%y")
+        dataCadastro = data.datetime.now().strftime("%d/%m/%y") ## coloca a data atual e o strftime coloca como string a data
     if dataAtualizacao is None:
-        dataAtualizacao = data.datetime.now().strftime("%d/%m/%y")
+        dataAtualizacao = data.datetime.now().strftime("%d/%m/%y") ## coloca a data atual e o strftime coloca como string a data
     
     addlivro = {
         "id": id,
@@ -63,11 +63,12 @@ def livrosDisp():
 
 ## Definindo função de emprestimo de livros
 def emprestimoLivro(livroId, alunoId):
-    livro_encontrado = next((livro for livro in dicionarioBiblioteca["livros"] if livro["id"] == livroId and livro["disponivel"]), None)
-    if livro_encontrado:
-        aluno_encontrado = next((aluno for aluno in dicionarioBiblioteca["alunos"] if aluno["id"] == alunoId), None)
-        if aluno_encontrado:
+    livro_encontrado = next((livro for livro in dicionarioBiblioteca["livros"] if livro["id"] == livroId and livro["disponivel"]), None) ##resumindo, faz a busca livro por livro no dicionario
+    if livro_encontrado: ##se retorna o valor verdadeiro ele segue com o emprestimo 
+        aluno_encontrado = next((aluno for aluno in dicionarioBiblioteca["alunos"] if aluno["id"] == alunoId), None)## mesma coisa do anterior mas aqui no caso é para buscar o aluno
+        if aluno_encontrado: ## se o aluno for verdadeiro ele vai finalziar o emprestimo do livro
             livro_encontrado["disponivel"] = False
+            livro_encontrado["dataAtualizacao"] =  data.datetime.now().strftime("%d/%m/%y") ## atualizad a data de atualização convertendo para string ja que o datetime retorna valor inteiro
             print(f"Livro {livro_encontrado['titulo']} emprestado ao aluno {aluno_encontrado['nome']}.")
         else:
             print("⚠️AVISO! ALUNO NÃO CADASTRADO")
