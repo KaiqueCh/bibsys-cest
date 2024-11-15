@@ -3,7 +3,6 @@
 ## definindo a biblioteca com nomenclatura abreviada
 import datetime as data
 import time as tempo
-from colorama import init, Fore, Back 
 
 ## Criando Dicionarios de Dados com Listas por Cadastro
 dicionarioBiblioteca = {
@@ -83,31 +82,29 @@ def emprestimoLivro(livroId, alunoId):
     for livro in dicionarioBiblioteca["livros"]:
         if livro["id"] == livroId and livro["disponivel"]:
             # verificar se o aluno existe
-            validaAluno = any(aluno for aluno in dicionarioBiblioteca["alunos"] if aluno["id"] == alunoId)
-            if validaAluno:
+            validaAluno =any(aluno for aluno in dicionarioBiblioteca["alunos"] if aluno["id"] == alunoId)
+            if validaAluno: ## se retornar verdaderio quer dizer que existe o aluno cadastrado, e inicia a função para o emprestimo
                 dicionarioBiblioteca["emprestimos"].append({"livroid": livroId, "alunoid": alunoId})
                 livro["disponivel"] = False  
-                livro["dataAtualizacao"] =  data.datetime.now().strftime("%d/%m/%y")
+                livro["dataAtualizacao"] =  data.datetime.now().strftime("%d/%m/%y") ## vai colocar a data de atualização atual e converter para string
                 print(f"Empréstimo do livro ID {livroId}, Titulo {livro['titulo']} realizado com sucesso.")
 
-
             else:
-                print(Fore.White +Back.RED +"""
+                print("""
                       !!!ALUNO NÃO CADASTRADO"
-                     """)
+                     """)   ### se o valor for falso na variavel validaAluno vai retornar esse alerta e em seguida prosseguir cadastro ou retornar ao menu
                 print(""" 
-                      [0] - RETORNAR AO MENU
-                      [1] - PROSSEGUIR CADASTRO E EMPRESTIMO
-                      
-                      
+                        [0] - RETORNAR AO MENU 
+                        [1] - PROSSEGUIR CADASTRO E EMPRESTIMO
                       """)
                 validaOpcao = int(input("Digite uma das opções"))
                 if validaOpcao == 0:
-                    return menuInicial()
+                    return menuInicial()  ##retorna ao menu inicial
                 
                 elif validaOpcao == 1:
-                    nome = input("Digite o Nome do Aluno: ")
-                    dataNascimento = input("Digite a Data de Nascimento do Aluno: ")
+                    alunoId = int(input("Id do Aluno: "))
+                    nome = input("Nome do Aluno:  ")
+                    dataNascimento = input("Data de Nascimento:  ")
                     cadastraAluno(alunoId, nome, dataNascimento)
                     print(f"Aluno {nome} cadastrado com sucesso!")
                     dicionarioBiblioteca["emprestimos"].append({"livroid": livroId, "alunoid": alunoId})
