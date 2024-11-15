@@ -1,14 +1,4 @@
-"""
-Programa: BIB01
-Titulo  : Sistema Gestão de Biblioteca
-Tipo    : Programa
-Finalid : Gerenciamento Avançado de Livros
-Autores : Kaique Chaves, Rodolfo Sousa, Camila Costney, Winicius Passaia, Maria Eduarda
-Data    : 13-11-2024
-Solicit : Pedriana Pavão 
-Demanda : Avaliação Qualitativa Algoritmos e Linguagens de Programação
-
-"""
+""" ambiente de debug"""
 ## Importando Biblioteca
 ## definindo a biblioteca com nomenclatura abreviada
 import datetime as data
@@ -92,14 +82,15 @@ def emprestimoLivro(livroId,alunoId):
     for livro in dicionarioBiblioteca["livros"]:
      if livro["id"] == livroId and livro["disponivel"]==True:
          #verificar se o aluno existe
-        if dicionarioBiblioteca["alunos"] == alunoId:
+        validaAluno = any(aluno["id"] == alunoId for aluno in dicionarioBiblioteca["alunos"])
+        if validaAluno:
            print(dicionarioBiblioteca["alunos"])
            dicionarioBiblioteca["emprestimos"].append({"livroid": livroId, "alunoid": alunoId})
            print(f" Emprestimo do livro ID{livroId} Realizado com Sucesso.")
 
         else:
-            print(f""" HELP!! ALUNO NÃO CADASTRADO""")
-            cadastraAluno()
+            print(f"""NÃO CADASTRADO\n Cadastre o Aluno a seguir""")
+            cadastraAluno(alunoId, nome, dataNascimento) # type: ignore
 
         #senao aluno não cadastrado
      else:
@@ -188,7 +179,7 @@ def menuInicial():
 
         elif escolha == 7:
             mostraLinha()
-            livrosDisp("livros Disponiveis")
+            livrosDisp()
             livroId = int(input("Digite o ID do livro: "))
             alunoId = int(input("Digite o ID do aluno: "))
             emprestimoLivro(livroId, alunoId)
