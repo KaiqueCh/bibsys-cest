@@ -79,7 +79,7 @@ def buscaLivrotit(titulo):
 def livrosDisp():
     for livro in dicionarioBiblioteca["livros"]:
         if livro["disponivel"]:
-            print(f"O Documento em Questão {livro['id']} {livro['titulo']} disponível desde {livro['dataAtualizacao']}")
+            print(f"O livro {livro['id']} {livro['titulo']} disponível desde {livro['dataAtualizacao']}")
 
 ## Definindo função de emprestimo de livros
 def emprestimoLivro(livroId, alunoId):
