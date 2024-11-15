@@ -81,6 +81,7 @@ def livrosDisp():
         if livro["disponivel"]:
             print(f"O livro {livro['id']} {livro['titulo']} disponível desde {livro['dataAtualizacao']}")
 
+
 ## Definindo função de emprestimo de livros
 def emprestimoLivro(livroId, alunoId):
     livro_encontrado = next((livro for livro in dicionarioBiblioteca["livros"] if livro["id"] == livroId and livro["disponivel"]), None)
@@ -177,7 +178,7 @@ def menuInicial():
 
         elif escolha == 7:
             mostraLinha()
-            print(dicionarioBiblioteca["livros"])
+            livrosDisp()
             mostraLinha()
 
         elif escolha == 0:
