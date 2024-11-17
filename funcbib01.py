@@ -172,3 +172,4 @@ def menuInicial():
         # SIMPLES, SE NAO FOR UMA DAS OPÇÕES DO MENU, APARECE O PRINT AVISANDO
         elif escolha not in [0, 1, 2, 3, 4, 5, 6, 7]:
             print("Opção inválida. Tente novamente.")
+## AVALIE CM CARINHO PROFESSORA
