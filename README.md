@@ -8,3 +8,5 @@ Autores : Kaique Chaves, Rodolfo Sousa, Camila Costney, Winicius Passaia, Maria 
 Data    : 13-11-2024
 Solicit : Pedriana Pavão 
 Demanda : Avaliação Qualitativa Algoritmos e Linguagens de Programação
+
+Att : Inicializar program bib0.1.py
