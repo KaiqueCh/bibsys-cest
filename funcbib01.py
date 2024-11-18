@@ -63,13 +63,13 @@ def livrosDisp():
 
 ## Definindo função de emprestimo de livros
 def emprestimoLivro(livroId, alunoId):
-    livro_encontrado = next((livro for livro in dicionarioBiblioteca["livros"] if livro["id"] == livroId and livro["disponivel"]), None) ##resumindo, faz a busca livro por livro no dicionario
-    if livro_encontrado: ##se retorna o valor verdadeiro ele segue com o emprestimo 
-        aluno_encontrado = next((aluno for aluno in dicionarioBiblioteca["alunos"] if aluno["id"] == alunoId), None)## mesma coisa do anterior mas aqui no caso é para buscar o aluno
-        if aluno_encontrado: ## se o aluno for verdadeiro ele vai finalziar o emprestimo do livro
-            livro_encontrado["disponivel"] = False
-            livro_encontrado["dataAtualizacao"] =  data.datetime.now().strftime("%d/%m/%y") ## atualizad a data de atualização convertendo para string ja que o datetime retorna valor inteiro
-            print(f"Livro {livro_encontrado['titulo']} emprestado ao aluno {aluno_encontrado['nome']}.")
+    livroEncontrado = next((livro for livro in dicionarioBiblioteca["livros"] if livro["id"] == livroId and livro["disponivel"]), None) ##resumindo, faz a busca livro por livro no dicionario
+    if livroEncontrado: ##se retorna o valor verdadeiro ele segue com o emprestimo 
+        alunoEncontrado = next((aluno for aluno in dicionarioBiblioteca["alunos"] if aluno["id"] == alunoId), None)## mesma coisa do anterior mas aqui no caso é para buscar o aluno
+        if alunoEncontrado: ## se o aluno for verdadeiro ele vai finalziar o emprestimo do livro
+            livroEncontrado["disponivel"] = False
+            livroEncontrado["dataAtualizacao"] =  data.datetime.now().strftime("%d/%m/%y") ## atualizad a data de atualização convertendo para string ja que o datetime retorna valor inteiro
+            print(f"Livro {livroEncontrado['titulo']} emprestado ao aluno {alunoEncontrado['nome']}.")
         else:
             print("⚠️AVISO! ALUNO NÃO CADASTRADO")
             id = int(input("Digite o ID do aluno: "))
