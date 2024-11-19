@@ -29,9 +29,4 @@ Este projeto tem como objetivo a implementação de um sistema de gerenciamento 
 
 ## Como executar o projeto
 
-1. Clone ou faça o download do repositório.
-2. Certifique-se de que todos os arquivos necessários estão no mesmo diretório.
-3. No terminal ou prompt de comando, navegue até o diretório do projeto.
-4. Execute o arquivo principal:
-   ```bash
-   python bib0.1.py
+1. Para rodar o programa basta baixar o executavel que esta na pasta output
