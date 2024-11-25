@@ -123,6 +123,7 @@ def menuInicial():
                   [5] - Alunos Cadastrados 
                   [6] - Deseja perdir um Livro Emprestado?
                   [7] - Livros Disponíveis para Emprestimo
+                  [8] - Devolução de Livros
                   [0] - Sair
                """)
         
