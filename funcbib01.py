@@ -10,9 +10,11 @@ dicionarioBiblioteca = {
     "emprestimos": []
 }
 
+
 ## DEFININDO FUNÇÃO PARA ENFEITE
 def mostraLinha():
     print("-" * 60)
+
 
 ## Definindo Função para Cadastro de Livro na lista 
 def cadastraLivro(id, titulo, autor, dataCadastro=None, dataAtualizacao=None, disponivel=True):
@@ -31,6 +33,7 @@ def cadastraLivro(id, titulo, autor, dataCadastro=None, dataAtualizacao=None, di
     }
     dicionarioBiblioteca["livros"].append(addlivro)
 
+
 ## Definindo Função que Cadastra o Autor
 def cadastraAutor(id, nome, dataNascimento):
     addAutor = {
@@ -39,6 +42,7 @@ def cadastraAutor(id, nome, dataNascimento):
         "dataNascimento": dataNascimento
     }
     dicionarioBiblioteca["autores"].append(addAutor)
+
 
 ## Definindo Função que cadastra o aluno
 def cadastraAluno(id, nome, dataNascimento):
@@ -49,10 +53,12 @@ def cadastraAluno(id, nome, dataNascimento):
     }
     dicionarioBiblioteca["alunos"].append(addAluno)
 
+
 ## Definindo função de busca livro por titulo
 def buscaLivrotit(titulo):
     return [livro for livro in dicionarioBiblioteca["livros"]
             if titulo.lower() in livro["titulo"].lower()]
+
 
 ## Definindo Função de disponibilidade de livros
 def livrosDisp():
@@ -80,13 +86,30 @@ def emprestimoLivro(livroId, alunoId):
     else:
         print("Livro não disponível ou não encontrado.")
 
+
 ## Definindo função de busca livro por id
 def buscaLivroid(id):
     return [livro for livro in dicionarioBiblioteca["livros"] if livro["id"] == id]
 
+
 ## Definindo Função de busca aluno
 def buscaAlunos(nome):
     return [aluno for aluno in dicionarioBiblioteca["alunos"] if nome.lower() in aluno["nome"].lower()]
+
+
+def devolverLivro(livroId, alunoId):
+    livroEncontrado = next((livro for livro in dicionarioBiblioteca["livros"] if livro["id"] == livroId and not livro["disponivel"]), None)
+    
+    if livroEncontrado:
+        alunoEncontrado = next((aluno for aluno in dicionarioBiblioteca["alunos"] if aluno["id"] == alunoId), None)
+        if alunoEncontrado:
+            livroEncontrado["disponivel"] = True
+            livroEncontrado["dataAtualizacao"] = data.datetime.now().strftime("%d/%m/%y")
+            print(f"Livro {livroEncontrado['titulo']} devolvido pelo aluno {alunoEncontrado['nome']}.")
+        else:
+            print("⚠️AVISO! ALUNO NÃO CADASTRADO")
+    else:
+        print("Livro não encontrado ou já está disponível.")    
 
 ## INICIO DO MENU DEFININDO A FUNÇÃO 
 def menuInicial():
@@ -160,6 +183,14 @@ def menuInicial():
             mostraLinha()
             livrosDisp()
             mostraLinha()
+
+        elif escolha == 8:
+            mostraLinha()
+            livroId = int(input("Digite o ID do livro: "))
+            alunoId = int(input("Digite o ID do aluno: "))
+            devolverLivro(livroId, alunoId)
+            mostraLinha()
+
 
         elif escolha == 0:
             print("Sistema está se encerrando...⏳")

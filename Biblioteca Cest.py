@@ -18,7 +18,7 @@ import time as tempo
 print(" ---------|📚 Biblioteca Cest 📚|---------\n")
 for i in range(11): 
     print(f"Carregando: {'🟨' * i}{'◽' * (10 - i)} {i * 10}% ", end="\r")
-    tempo.sleep(0.8)
+    tempo.sleep(0.1)
 print(end="Carregado com Sucesso\n")
 
 ## Criando Dicionarios de Dados com Listas por Cadastro
@@ -99,6 +99,20 @@ def emprestimoLivro(livroId, alunoId):
     else:
         print("Livro não disponível ou não encontrado.")
 
+def devolverLivro(livroId, alunoId):
+    livroEncontrado = next((livro for livro in dicionarioBiblioteca["livros"] if livro["id"] == livroId and not livro["disponivel"]), None)
+    
+    if livroEncontrado:
+        alunoEncontrado = next((aluno for aluno in dicionarioBiblioteca["alunos"] if aluno["id"] == alunoId), None)
+        if alunoEncontrado:
+            livroEncontrado["disponivel"] = True
+            livroEncontrado["dataAtualizacao"] = data.datetime.now().strftime("%d/%m/%y")
+            print(f"Livro {livroEncontrado['titulo']} devolvido pelo aluno {alunoEncontrado['nome']}.")
+        else:
+            print("⚠️AVISO! ALUNO NÃO CADASTRADO")
+    else:
+        print("Livro não encontrado ou já está disponível.")    
+
 ## Definindo função de busca livro por id
 def buscaLivroid(id):
     return [livro for livro in dicionarioBiblioteca["livros"] if livro["id"] == id]
@@ -119,6 +133,7 @@ def menuInicial():
                   [5] - Alunos Cadastrados 
                   [6] - Deseja perdir um Livro Emprestado?
                   [7] - Livros Disponíveis para Emprestimo
+                  [8] - Quitar Emprestimo
                   [0] - Sair
                """)
         
@@ -178,6 +193,13 @@ def menuInicial():
         elif escolha == 7:
             mostraLinha()
             livrosDisp()
+            mostraLinha()
+
+        elif escolha == 8:
+            mostraLinha()
+            livroId = int(input("Digite o ID do livro: "))
+            alunoId = int(input("Digite o ID do aluno: "))
+            devolverLivro(livroId, alunoId)
             mostraLinha()
 
         elif escolha == 0:

@@ -10,7 +10,7 @@ Demanda : Avaliação Qualitativa Algoritmos e Linguagens de Programação
 
 """)
 ##importando funções
-from funcbib01 import dicionarioBiblioteca, cadastraAluno, cadastraAutor, cadastraLivro, emprestimoLivro, mostraLinha, livrosDisp, buscaAlunos, buscaLivroid, buscaLivrotit,menuInicial
+from funcbib01 import dicionarioBiblioteca, cadastraAluno, cadastraAutor, cadastraLivro, emprestimoLivro, mostraLinha, livrosDisp, buscaAlunos, buscaLivroid, buscaLivrotit, devolverLivro, menuInicial
 
 ## Importando Biblioteca Necessarias para execução das Funções
 import datetime as data
