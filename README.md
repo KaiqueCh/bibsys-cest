@@ -29,4 +29,4 @@ Este projeto tem como objetivo a implementação de um sistema de gerenciamento 
 
 ## Como executar o projeto
 
-1. Para rodar o programa basta baixar o executavel que esta na pasta output
+1. Para rodar o programa basta baixar o executavel que esta na pasta dist
